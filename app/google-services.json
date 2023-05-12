@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "780157458579",
+    "project_id": "webrtcvideocallapp",
+    "storage_bucket": "webrtcvideocallapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780157458579:android:a72a0f7bb47b6725b7d566",
+        "android_client_info": {
+          "package_name": "com.mad_lab.webrtcvideocallapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780157458579-s6ini3l5c8f4hji0dnt6u7qg26m1j3ai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mad_lab.webrtcvideocallapp",
+            "certificate_hash": "3211daa988beb00361e3339b5f899353e9d1b135"
+          }
+        },
+        {
+          "client_id": "780157458579-7rkj2li7lsr9csf2buo18jq4u3rp57m2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8uHMjn-RPLYvdOvnDd-dXqQEykUBWBr8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780157458579-7rkj2li7lsr9csf2buo18jq4u3rp57m2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
