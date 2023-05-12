@@ -66,7 +66,7 @@ public class ProfileFragment extends Fragment {
                                 userName_tv.setText(currentUser.userName);
                                 userEmail_tv.setText(userEmail);
                                 userPhone_tv.setText(currentUser.userPhone);
-                                startService(userEmail, currentUser.userName);
+//                                startService(currentUser.userEmail, currentUser.userName);
                             }
                         }
                     }
@@ -77,31 +77,13 @@ public class ProfileFragment extends Fragment {
                     }
                 });
 
-        DatabaseReference online_status_all_users = database.getReference("onlineStatuses");
-        online_status_all_users.child(userEmail.split("@")[0]).setValue("online");
-        online_status_all_users.child(userEmail.split("@")[0]).onDisconnect().setValue("offline");
+//        DatabaseReference online_status_all_users = database.getReference("onlineStatuses");
+//        online_status_all_users.child(userEmail.split("@")[0]).setValue("online");
+//        online_status_all_users.child(userEmail.split("@")[0]).onDisconnect().setValue("offline");
 
 
 
         return view;
     }
-
-    public void startService(String userID, String userName){
-
-        Application application = getActivity().getApplication(); // Android's application context
-        long appID = 1818078310;   // yourAppID
-        String appSign = "c3806677874dd4812d0b950eeb67dea9c4bd5b1e6bc83696085bbc2834adddf5";  // yourAppSign
-
-        ZegoUIKitPrebuiltCallInvitationConfig callInvitationConfig = new ZegoUIKitPrebuiltCallInvitationConfig();
-        callInvitationConfig.notifyWhenAppRunningInBackgroundOrQuit = true;
-        ZegoNotificationConfig notificationConfig = new ZegoNotificationConfig();
-        notificationConfig.sound = "zego_uikit_sound_call";
-        notificationConfig.channelID = "CallInvitation";
-        notificationConfig.channelName = "CallInvitation";
-        ZegoUIKitPrebuiltCallInvitationService.init(application, appID, appSign, userID, userName,callInvitationConfig);
-
-    }
-
-
 
 }

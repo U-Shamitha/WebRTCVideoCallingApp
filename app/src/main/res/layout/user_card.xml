@@ -40,12 +40,21 @@
                         />
                 </androidx.cardview.widget.CardView>
 
+
+                <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
+                    android:id="@+id/voice_call_btn"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginTop="4dp"/>
+
                 <com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton
                     android:id="@+id/video_call_btn"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp" />
+                    android:layout_marginRight="20dp" />
 
 <!--                <ImageButton-->
 <!--                    android:id="@+id/video_call_btn_v"-->

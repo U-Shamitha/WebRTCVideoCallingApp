@@ -57,11 +57,14 @@ public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapte
 //        holder.email.setText(arrUsers.get(position).userEmail);
 //        holder.phone.setText(arrUsers.get(position).userPhone);
         Picasso.get().load(arrUsers.get(position).profileUri).into(holder.img);
+
+        holder.voiceCallBtn.setIsVideoCall(false);
+        holder.voiceCallBtn.setResourceID("zego_uikit_call");
+        holder.voiceCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail, arrUsers.get(position).userName)));
+
         holder.videoCallBtn.setIsVideoCall(true);
         holder.videoCallBtn.setResourceID("zego_uikit_call");
         holder.videoCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail, arrUsers.get(position).userName)));
-
-
     }
 
 
@@ -74,7 +77,7 @@ public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapte
 
         TextView name, email, phone;
         ImageView img;
-        ZegoSendCallInvitationButton videoCallBtn;
+        ZegoSendCallInvitationButton voiceCallBtn, videoCallBtn;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +86,7 @@ public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapte
 //            email = itemView.findViewById(R.id.userEmail);
 //            phone = itemView.findViewById(R.id.userPhone);
             img = itemView.findViewById(R.id.profile_image);
+            voiceCallBtn = itemView.findViewById(R.id.voice_call_btn);
             videoCallBtn = itemView.findViewById(R.id.video_call_btn);
 
         }
