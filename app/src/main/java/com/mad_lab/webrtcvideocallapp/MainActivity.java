@@ -2,13 +2,17 @@ package com.mad_lab.webrtcvideocallapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telecom.InCallService;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -21,9 +25,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.zegocloud.uikit.prebuilt.call.ZegoUIKitPrebuiltCallConfig;
+import com.zegocloud.uikit.prebuilt.call.ZegoUIKitPrebuiltCallFragment;
 import com.zegocloud.uikit.prebuilt.call.config.ZegoNotificationConfig;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationService;
+import com.zegocloud.uikit.prebuilt.call.invite.internal.IncomingCallButtonListener;
+import com.zegocloud.uikit.prebuilt.call.invite.internal.ZegoCallUIKitUser;
+import com.zegocloud.uikit.prebuilt.call.invite.internal.ZegoInvitationCallListener;
+import com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton;
+import com.zegocloud.uikit.service.defines.ZegoUIKitUser;
+
+import java.util.Collections;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences sharedPref = getApplicationContext().getSharedPreferences("check_login", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor =  sharedPref.edit();
+
+        String[] permissionNeeded = {
+                "android.permission.CAMERA",
+                "android.permission.RECORD_AUDIO"};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, "android.permission.CAMERA") != PackageManager.PERMISSION_GRANTED ||
+                    ContextCompat.checkSelfPermission(this, "android.permission.RECORD_AUDIO") != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(permissionNeeded, 101);
+            }
+        }
 
 
         logout.setOnClickListener(new View.OnClickListener() {
@@ -102,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         if(snapshot.exists()){
                             for(DataSnapshot user : snapshot.getChildren()){
                                 Users currentUser = user.getValue(Users.class);
-                                startService(currentUser.userEmail, currentUser.userName);
+                                startService(currentUser.userEmail.split("@")[0], currentUser.userName);
+                                Toast.makeText(MainActivity.this, "started service", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -141,5 +165,9 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         ZegoUIKitPrebuiltCallInvitationService.unInit();
     }
+
+
+
+
 
 }

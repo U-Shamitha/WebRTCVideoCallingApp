@@ -153,14 +153,16 @@ public class SignUpActivity extends AppCompatActivity {
                                     DatabaseReference ref = database.getReference("Users");
 
                                     //store user details and uri
-                                    ref.child(userEmail.split("@")[0]).setValue(new Users(uri.toString(), userName))
+                                    ref.child(userEmail.split("@")[0]).setValue(new Users(uri.toString(), userName, userEmail, "userPhone"))
                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if(task.isSuccessful()){
 
 //                                                    Toast.makeText(SignUpActivity.this, "usr details uploaded", Toast.LENGTH_SHORT).show();
-
+                                                    //set status offline
+                                                    DatabaseReference online_status_all_users = database.getReference("onlineStatuses");
+                                                    online_status_all_users.child(userEmail.split("@")[0]).setValue("offline");
                                                     //create user
                                                     auth.createUserWithEmailAndPassword(userEmail, pass)
                                                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {

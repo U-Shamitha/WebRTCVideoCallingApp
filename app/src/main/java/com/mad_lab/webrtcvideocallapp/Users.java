@@ -15,6 +15,8 @@ public class Users {
 
         this.userName = userName;
         this.profileUri = profileUri;
+        this.userEmail = "userEmail@gmail.com";
+        this.userPhone = "userPhone";
     }
 
     public Users(String profileUri, String userName, String userEmail, String userPhone){

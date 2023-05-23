@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 import com.zegocloud.uikit.prebuilt.call.config.ZegoNotificationConfig;
+import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallConfigProvider;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationConfig;
 import com.zegocloud.uikit.prebuilt.call.invite.ZegoUIKitPrebuiltCallInvitationService;
 import com.zegocloud.uikit.prebuilt.call.invite.widget.ZegoSendCallInvitationButton;
@@ -26,6 +27,7 @@ import com.zegocloud.uikit.service.defines.ZegoUIKitUser;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapter.ViewHolder> {
 
@@ -33,10 +35,12 @@ public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapte
     Application application;
     ArrayList<Users> arrUsers;
 
-    public RecyclerUserAdapter(Context context, ArrayList<Users> arrUsers){
+    public RecyclerUserAdapter(Context context, ArrayList<Users> arrUsers, Application application){
         this.context = context;
         this.arrUsers = arrUsers;
+        this.application =application;
     }
+
 
 
 
@@ -60,11 +64,11 @@ public class RecyclerUserAdapter extends RecyclerView.Adapter<RecyclerUserAdapte
 
         holder.voiceCallBtn.setIsVideoCall(false);
         holder.voiceCallBtn.setResourceID("zego_uikit_call");
-        holder.voiceCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail, arrUsers.get(position).userName)));
+        holder.voiceCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail.split("@")[0], arrUsers.get(position).userName)));
 
         holder.videoCallBtn.setIsVideoCall(true);
         holder.videoCallBtn.setResourceID("zego_uikit_call");
-        holder.videoCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail, arrUsers.get(position).userName)));
+        holder.videoCallBtn.setInvitees(Collections.singletonList(new ZegoUIKitUser(arrUsers.get(position).userEmail.split("@")[0], arrUsers.get(position).userName)));
     }
 
 

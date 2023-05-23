@@ -97,7 +97,7 @@ public class CallFragment extends Fragment {
         DatabaseReference ref = database.getReference();
 
         arrUsers.clear();
-        RecyclerUserAdapter adapter = new RecyclerUserAdapter(getContext(), arrUsers);
+        RecyclerUserAdapter adapter = new RecyclerUserAdapter(getContext(), arrUsers, getActivity().getApplication());
         recyclerView.setAdapter(adapter);
 
         ref.child("Users").orderByKey()
@@ -118,7 +118,7 @@ public class CallFragment extends Fragment {
                                                     if(snooping_status.equals("online")){
 //                                                        Toast.makeText(getContext(), "" + currentUser.userEmail, Toast.LENGTH_SHORT).show();
                                                         arrUsers.add(new Users(currentUser.profileUri, currentUser.userName, currentUser.userEmail, currentUser.userPhone));
-                                                        RecyclerUserAdapter adapter = new RecyclerUserAdapter(getContext(), arrUsers);
+                                                        RecyclerUserAdapter adapter = new RecyclerUserAdapter(getContext(), arrUsers, getActivity().getApplication());
                                                         recyclerView.setAdapter(adapter);
                                                     }
                                                 }
